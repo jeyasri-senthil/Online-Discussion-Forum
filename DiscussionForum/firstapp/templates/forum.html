@@ -1,0 +1,66 @@
+{% extends 'basic.html' %}
+
+{% block title %}DISCUSSION FORUM{% endblock %}
+{% block body %}
+<div class="container my-4">
+    <div class="jumbotron">
+        <h1 class="display-4"><b>ONLINE DISCUSSION FORUM</b></h1></h1>
+        <p class="lead"><b><h6><i>Feel free to discuss any topics of your choice. You can share your feedback, ask questions, or engage in any other conversations you prefer.</i></h6></b></p>
+        <hr class="my-4">
+        <p></p>
+        <button class="btn btn-primary btn-lg" data-target="#questions" data-toggle="modal" role="button">ENGAGE</button>
+    </div>
+    {% for post in posts %}
+    <div class="container-fluid mt-10">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="media flex-wrap w-100 align-items-center">
+                            <img src="/media/{{post.image}}" class="d-block ui-w-40 rounded-circle" alt="">
+                            <div class="media-body ml-3">
+                                <a href="/discussion/{{post.id}}" data-abc="true">{{post.user1}}</a>
+                            </div>
+                            <div class="text-muted small ml-3">
+                                <div class="px-4 pt-3">{{post.timestamp}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>{{post.post_content}}</p>
+                    </div>
+                    <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="questions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DISCUSS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Post your thoughts..</label>
+                        <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Post</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

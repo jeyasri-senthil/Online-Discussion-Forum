@@ -1,0 +1,19 @@
+{% block body %} 
+<br>
+<div id="login-box">
+    <div class="items">
+      <h1>REGISTER</h1>
+        <form action="/register/" method="post"> {% csrf_token %}
+   
+      <input type="text" name="username" placeholder="User Name" />
+      <input type="email" name="email" placeholder="E-Mail" />
+      <input type="text" name="first_name" placeholder="First Name" />
+      <input type="text" name="last_name" placeholder="Last Name" />
+      <input type="password" name="password" placeholder="Password" />
+      <input type="password" name="confirm_password" placeholder="Re-enter your password" />
+      
+      <input type="submit" name="signup_submit" value="REGISTER" />
+    </div>   
+  </div>
+ 
+{% endblock %}
